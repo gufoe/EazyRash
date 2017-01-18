@@ -168,7 +168,7 @@ app.controller('editorController', function($scope, $http, $routeParams, $sce, $
 					if ($scope.editing) return
 
 					BootstrapDialog.show({
-						title: $('<div>Comment from </div>').append(comment.user.email),
+						title: $('<div>Comment from </div>').append(comment.user.full_name),
 			            message: $('<div/>').html(comment.content)
 			        });
 

@@ -43,3 +43,7 @@ body {
 .status-3 { color: #0f4 }
 /* REJECTED = 4 */
 .status-4 { color: #f00 }
+
+.bootstrap-dialog .modal-header {
+    border-radius: 0!important;
+}

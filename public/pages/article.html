@@ -1,7 +1,6 @@
 <div class="container bs-docs-container" ng-init="init()">
     <div class="col-md-3">
-        <div ng-include="'/pages/sidebar/articles.html'"> </div>
-        <div ng-include="'/pages/sidebar/conferences.html'"> </div>
+        <div ng-include="'/pages/sidebar/articles-to-review.html'"> </div>
     </div>
     <div class="col-md-9">
 		<h1>
@@ -25,6 +24,10 @@
 		</div>
 		<hr>
 		<h3>Reviews:</h3>
+		<div ng-if="article.commit.content" class="alert alert-{{ article.commit.accepted ? 'success' : 'danger' }}">
+			The Chair has commented: {{ article.commit.content }}
+		</div>
+		<hr>
 		<div ng-if="!article.commit.reviews.length">
 			No reviews yet
 		</div>
@@ -60,7 +63,20 @@
 			<textarea class="form-control" ng-model="$parent.edits.review.content" rows="8" cols="80"></textarea>
 		</div>
 		<hr>
-		<div id="editor"></div>
+		<div id="editor" style="border: 1px solid #000; padding: 30px;"></div>
+
+		<hr>
+
+		<h3>Annotations:</h3>
+		<hr>
+		<div ng-if="!article.commit.comments.length">
+			No annotations yet
+		</div>
+		<div ng-else ng-repeat="c in article.commit.comments">
+			<b>{{ c.user.full_name }}</b> reviewed on {{c.updated_at|datify|date}}:<br>
+			{{ c.content }}
+			<hr>
+		</div>
 		<!-- <pre>{{ rash | json }}</pre>
 		<pre>{{ article | json }}</pre> -->
 	</div>

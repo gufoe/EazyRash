@@ -40,7 +40,10 @@
 								ng-click="selectReviewers(a)">
 								Reviewers
 							</button>
-							<b><a ng-href="#/articles/{{ a.id }}">{{ a.name }}</a></b>
+							<b>
+					            <i class="fa fa-fw fa-circle status-{{a.status}}" title="{{a.status_txt}}"></i>
+								<a ng-href="#/articles/{{ a.id }}">{{ a.name }}</a>
+							</b>
 							- <b>{{ a.reviewers.length }}</b> <i class="fa fa-fw fa-users"></i>
 							- <b>{{ a.commits_count }}</b> <i class="fa fa-fw fa-rotate-left"></i>
 							- {{ a.status_txt }}<br>
