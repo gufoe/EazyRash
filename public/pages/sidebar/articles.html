@@ -1,0 +1,17 @@
+<div ng-controller="sideArticlesController">
+    <h3 class="text-center">Latest Articles</h3>
+    <div ng-if="!articles.length" class="callout callout-info">
+        <strong>There are no articles yet</strong>
+    </div>
+    <ul class="list-group selected">
+        <li class="list-group-item" ng-repeat="a in articles">
+            <i class="fa fa-fw fa-circle status-{{a.status}}" title="{{a.status_txt}}"></i>
+            <a ng-href="#/articles/{{ a.id }}">
+                <strong>{{ a.name }}</strong>
+            </a>
+            <br>
+            - <i>{{ a.user.email }}</i>
+
+        </li>
+    </ul>
+</div>

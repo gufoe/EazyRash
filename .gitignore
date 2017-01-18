@@ -1,0 +1,10 @@
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+.php_cs*
+update.sh
+/vendor
+composer.lock
+
+.jsbeautifyrc

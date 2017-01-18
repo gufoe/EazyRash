@@ -1,0 +1,45 @@
+body {
+    background: #fff;
+    font-family: cantarell, monospace;
+}
+@media (max-width: 1024px) {
+    .container {
+        width: auto;
+    }
+}
+
+.panel {
+    box-shadow: 0 0 10px #ccc;
+}
+
+.navbar li.active a,
+.navbar li a:active,
+.navbar li a:hover,
+.navbar li a:focus,
+.navbar li a:visited {
+    text-decoration: underline;
+    background: transparent;
+}
+
+#editor span.comment {
+    color: #f50!important;
+    text-shadow: 0 0 10px #fa5;
+    cursor: pointer;
+}
+
+#editor span.comment:hover {
+    text-shadow: 0 0 10px #fa0;
+    /*text-shadow: 0 0 10px #aff;*/
+}
+
+
+/* UPDATING = 0 */
+.status-0 { color: #f80 }
+/* REVIEWING = 1 */
+.status-1 { color: #08f }
+/* REVIEWED = 2 */
+.status-2 { color: #333 }
+/* ACCEPTED = 3 */
+.status-3 { color: #0f4 }
+/* REJECTED = 4 */
+.status-4 { color: #f00 }

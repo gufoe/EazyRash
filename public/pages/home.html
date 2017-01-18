@@ -1,0 +1,46 @@
+<div class="container bs-docs-container">
+	<pre>Self: {{ self | json }}</pre>
+
+
+	<div class="row">
+		<div class="col-sm-4">
+			<div ng-if="!articles.length" class="callout callout-info">
+				<strong>There are no conferences yet</strong>
+			</div>
+			<div ng-if="conferences.length" class="panel panel-primary">
+				<div class="panel-heading">
+					Conferences
+				</div>
+				<ul class="list-group selected">
+					<li class="list-group-item" ng-repeat="c in conferences">
+						<a ng-href="#/conferences/{{ c.id }}">
+							<strong>{{ c.name }}</strong><br>
+						</a>
+						- <i>{{ c.articles.length }} articles</i>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<div ng-if="!articles.length" class="callout callout-info">
+				<strong>You have no articles to review</strong>
+			</div>
+			<div ng-if="articles.length" class="panel panel-primary">
+				<div class="panel-heading">
+					Articles
+				</div>
+				<ul class="list-group selected">
+					<li class="list-group-item" ng-repeat="a in articles">
+			            <i class="fa fa-fw fa-circle status-{{a.status}}" title="{{a.status_txt}}"></i>
+			            <a ng-href="#/articles/{{ a.id }}">
+			                <strong>{{ a.name }}</strong>
+			            </a>
+			            <br>
+			            - <i>{{ a.user.email }}</i>
+
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

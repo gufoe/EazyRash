@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>rash</title>
+
+    <!-- Bootstrap and Bootstrap Flat -->
+    <link href="/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="/theme/bootstrap-flat.min.css" rel="stylesheet">
+    <link href="/theme/bootstrap-flat-extras.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+
+    <!-- Bootstrap dialog -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="/theme/angular.min.js" charset="utf-8"></script>
+    <script src="/theme/angular-route.min.js" charset="utf-8"></script>
+    <script src="/theme/ui-bootstrap-tpls.min.js" charset="utf-8"></script>
+    <script src="/theme/ng-onload.js" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.js"></script>
+
+    <script type="text/javascript">
+        var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngOnload', 'ngSanitize'])
+    </script>
+    <script src="/js/utils.js" charset="utf-8"></script>
+    <script src="/js/auth.js" charset="utf-8"></script>
+    <script src="/js/constants.js" charset="utf-8"></script>
+    <script src="/js/user-picker.js" charset="utf-8"></script>
+    <script src="/js/article-controller.js" charset="utf-8"></script>
+    <script src="/js/article-form-controller.js" charset="utf-8"></script>
+    <script src="/js/conference-controller.js" charset="utf-8"></script>
+    <script src="/js/login-controller.js" charset="utf-8"></script>
+    <script src="/js/conferences-controller.js" charset="utf-8"></script>
+    <script src="/js/main.js" charset="utf-8"></script>
+</head>
+
+<body ng-controller="mainController">
+    <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#/" class="navbar-brand">EazyRash</a>
+            </div>
+            <nav id="bs-navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-if="logged()" ng-class="isMenu('/') ? 'active' : ''">
+                        <a href="#/">Home</a>
+                    </li>
+                    <li ng-if="logged()" ng-class="isMenu('/conferences/') ? 'active' : ''">
+                        <a href="#/conferences/">Conferences</a>
+                    </li>
+                    <li ng-if="!logged()" ng-class="isMenu('/login/') ? 'active' : ''">
+                        <a href="#/login/">Login</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li ng-if="logged()">
+                        <a>{{ user().email }}</a>
+                    </li>
+                    <li ng-if="logged()">
+                        <a ng-click="logout()">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div ng-view></div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/theme/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/theme/bootstrap.min.js"></script>
+
+    <!-- Bootstrap dialog -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js" charset="utf-8"></script>
+
+    <script src="/custom.js" charset="utf-8"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<div class="container bs-docs-container" ng-init="init()">
+    <div class="col-md-3">
+        <div ng-include="'/pages/sidebar/articles.html'"> </div>
+        <div ng-include="'/pages/sidebar/conferences.html'"> </div>
+    </div>
+    <div class="col-md-9">
+		<h1>
+            <i class="fa fa-fw fa-circle status-{{article.status}}" title="{{article.status_txt}}"></i>
+			{{article.name}}
+		</h1>
+		<div>Uploaded by:
+			<code>{{ article.user.email }}</code>
+		</div>
+		<div>Conference:
+			<a ng-href="#/conferences/{{ article.conference.id }}">
+				<code>{{ article.conference.name }}</code>
+			</a>
+		</div>
+		<div>Status:
+			<code>{{ article.status_txt }}</code>
+		</div>
+
+		<div>Editor mode:
+			<code>{{ editing ? 'reviewer' : 'reader' }}</code>
+		</div>
+		<hr>
+		<h3>Reviews:</h3>
+		<div ng-if="!article.commit.reviews.length">
+			No reviews yet
+		</div>
+		<div ng-else ng-repeat="r in article.commit.reviews">
+			<b>{{ r.user.email }}</b> reviewed on {{r.updated_at|datify|date}}:<br>
+			<i class="fa fa-fw fa-circle"
+					ng-style="{color: r.accepted?'#0c4' : '#f00'}"></i>
+			{{ r.content }}
+			<br>
+		</div>
+		<div ng-if="article.auth.review">
+			<hr>
+			<button ng-if="!editing" class="btn btn-success" ng-click="startEditing()">Modifica</button>
+			<button ng-if="editing" class="btn btn-success" ng-click="save()">Save</button>
+			<button ng-if="editing" class="btn btn-danger" ng-click="stopEditing()">Abort</button>
+		</div>
+		<div ng-if="editing">
+			<br>
+			<div ng-if="article.auth.manage" class="alert alert-warning">
+				Warning! You are the chair of the conference, and by setting
+				the following form you will stop the review process for this paper.
+			</div>
+			Giudizio finale:
+			<label>
+				<input type="radio" ng-model="edits.review.accepted" value=1>
+				Accettato
+			</label>
+			<label>
+				<input type="radio" ng-model="edits.review.accepted" value=0>
+				Rifiutato
+			</label>
+			<br>
+			<textarea class="form-control" ng-model="$parent.edits.review.content" rows="8" cols="80"></textarea>
+		</div>
+		<hr>
+		<div id="editor"></div>
+		<!-- <pre>{{ rash | json }}</pre>
+		<pre>{{ article | json }}</pre> -->
+	</div>
+</div>

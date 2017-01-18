@@ -1,0 +1,81 @@
+<div class="container bs-docs-container" ng-hide="form" ng-init="refresh()">
+
+	<div class="text-center">
+		<h1>Conferenza "{{ conference.name }}"</h1>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Chairs</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<li ng-repeat="u in conference.chairs">{{ u.email }}</li>
+					</ul>
+				</div>
+				<div class="panel-footer" ng-if="conference.auth.manage">
+					<button class="btn btn-success btn-striped" ng-click="selectChairs()">Select conference chairs</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Papers</h3>
+				</div>
+				<div class="panel-body">
+					<ul ng-if="conference.articles.length" class="list-group">
+						<li ng-repeat="a in conference.articles" class="list-group-item clearfix" ng-controller="articleController" ng-init="article = a">
+							<button ng-if="a.auth.update" class="btn btn-success btn-striped pull-right"
+								ng-click="uploadCommit($event, a)" ng-disabled="a.uploading">
+								Upload a new version
+							</button>
+							<a ng-if="a.auth.review" class="btn btn-success btn-striped pull-right"
+								ng-href="#/articles/{{ a.id }}">
+								Review
+							</a>
+							<button ng-if="a.auth.manage" class="btn btn-success btn-striped pull-right"
+								ng-click="selectReviewers(a)">
+								Reviewers
+							</button>
+							<b><a ng-href="#/articles/{{ a.id }}">{{ a.name }}</a></b>
+							- <b>{{ a.reviewers.length }}</b> <i class="fa fa-fw fa-users"></i>
+							- <b>{{ a.commits_count }}</b> <i class="fa fa-fw fa-rotate-left"></i>
+							- {{ a.status_txt }}<br>
+							<i>- {{ a.user.email }}</i>
+						</li>
+					</ul>
+					<div ng-if="!conference.articles.length">
+						There are no papers yet
+					</div>
+					<hr>
+					<button class="btn btn-success btn-striped" ng-click="setArticleForm()">Submit a new paper +</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container bs-docs-container" ng-if="form=='article'">
+	<div class="" ng-controller="articleFormController">
+		<pre>{{ article | json }}</pre>
+		<form class="form-horizontal" ng-submit="submit()">
+			<div class="alert alert-danger" role="alert" ng-if="error">{{ error }}</div>
+			<div class="alert alert-info" role="alert" ng-if="status">{{ status }}</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Name</label>
+				<div class="col-sm-10">
+					<input type="text" ng-model="article.name" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<a ng-click="gotoList()" class="btn btn-danger">Cancel</a>
+					<button type="submit" class="btn btn-success btn-striped">Save</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
