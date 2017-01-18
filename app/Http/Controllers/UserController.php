@@ -12,7 +12,7 @@ class UserController extends Controller
         $this->middleware('auth', ['except' => ['signup']]);
     }
 
-    public function list(Request $request)
+    public function lists(Request $request)
     {
         return User::where('email', 'like', "%{$request->input('q')}%")->get();
     }

@@ -13,7 +13,7 @@ class ConferenceController extends Controller
         $this->middleware('auth');
     }
 
-    public function list()
+    public function lists()
     {
         return Conference::with('chairs')
             ->with('articles')

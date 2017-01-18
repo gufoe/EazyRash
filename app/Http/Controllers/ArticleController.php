@@ -13,7 +13,7 @@ class ArticleController extends Controller
         $this->middleware('auth');
     }
 
-    public function list()
+    public function lists()
     {
         return Article::with('user')
             ->with('reviewers')
