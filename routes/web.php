@@ -48,6 +48,26 @@ $app->get('{path:.*}', function ($path) use ($app) {
     // Sanitize path
     while (strpos('..', $path) !== false)
         $path = str_replace('..', '', $path);
-    if (file_exists(base_path("/public/$path")))
-    return file_get_contents(base_path("/public/$path"));
+
+    $path = base_path("/public/$path");
+    if (file_exists($path)) {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $type = finfo_file($finfo, $path);
+        finfo_close($finfo);
+
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+
+        $types = [
+            'html' => 'text/html',
+            'css' => 'text/css',
+            'js' => 'application/javascript',
+            'ttf' => 'font/opentype',
+        ];
+
+        $res = new \Illuminate\Http\Response(file_get_contents($path), 200);
+        return $res->header('Content-Type', @$types[$ext]);
+
+    } else {
+        abort(404);
+    }
 });
