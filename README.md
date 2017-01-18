@@ -1,2 +1,1 @@
 # EazyRash
-# EazyRash
