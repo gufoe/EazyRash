@@ -12,7 +12,7 @@
 				</div>
 				<div class="panel-body">
 					<ul>
-						<li ng-repeat="u in conference.chairs">{{ u.email }}</li>
+						<li ng-repeat="u in conference.chairs">{{ u.full_name }}</li>
 					</ul>
 				</div>
 				<div class="panel-footer" ng-if="conference.auth.manage">
@@ -44,7 +44,7 @@
 							- <b>{{ a.reviewers.length }}</b> <i class="fa fa-fw fa-users"></i>
 							- <b>{{ a.commits_count }}</b> <i class="fa fa-fw fa-rotate-left"></i>
 							- {{ a.status_txt }}<br>
-							<i>- {{ a.user.email }}</i>
+							<i>- {{ a.user.full_name }}</i>
 						</li>
 					</ul>
 					<div ng-if="!conference.articles.length">

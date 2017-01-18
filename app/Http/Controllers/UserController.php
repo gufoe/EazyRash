@@ -25,6 +25,7 @@ class UserController extends Controller
     public function signup(Request $req)
     {
         $data = [
+            'name'     => $req->input('name'),
             'email'    => $req->input('email'),
             'password' => $req->input('password'),
         ];

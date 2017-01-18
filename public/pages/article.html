@@ -9,7 +9,7 @@
 			{{article.name}}
 		</h1>
 		<div>Uploaded by:
-			<code>{{ article.user.email }}</code>
+			<code>{{ article.user.full_name }}</code>
 		</div>
 		<div>Conference:
 			<a ng-href="#/conferences/{{ article.conference.id }}">
@@ -29,7 +29,7 @@
 			No reviews yet
 		</div>
 		<div ng-else ng-repeat="r in article.commit.reviews">
-			<b>{{ r.user.email }}</b> reviewed on {{r.updated_at|datify|date}}:<br>
+			<b>{{ r.user.full_name }}</b> reviewed on {{r.updated_at|datify|date}}:<br>
 			<i class="fa fa-fw fa-circle"
 					ng-style="{color: r.accepted?'#0c4' : '#f00'}"></i>
 			{{ r.content }}

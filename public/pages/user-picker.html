@@ -30,7 +30,7 @@
 	<div ng-if="unselected().length">
 		<ul class="list-group unselected">
 			<li class="list-group-item" ng-repeat="u in unselected()" ng-click="select(u)">
-				{{ u.email }}
+				{{ u.full_name }}
 			</li>
 		</ul>
 	</div>
@@ -40,7 +40,7 @@
 		<i>Selected users:</i>
 		<ul class="list-group selected">
 			<li class="list-group-item" ng-repeat="u in selected" ng-click="unselect(u)">
-				<i class="fa fa-fw fa-check" class="text-green"></i> {{ u.email }}
+				<i class="fa fa-fw fa-check" class="text-green"></i> {{ u.full_name }}
 			</li>
 		</ul>
 	</div>

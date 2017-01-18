@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Hash;
 class User extends Model
 {
     protected $guarded = ['id'];
-    protected $visible = ['id', 'email'];
+    protected $visible = ['id', 'name', 'email', 'full_name'];
+    protected $appends = ['full_name'];
     public $timestamps = false;
     public static $rules = [
+        'name'    => 'required',
         'email'    => 'required|unique:users',
         'password' => 'required|min:7',
     ];
@@ -44,5 +46,10 @@ class User extends Model
     public function login($password)
     {
         return Hash::check($password, $this->password);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} <{$this->email}>";
     }
 }
