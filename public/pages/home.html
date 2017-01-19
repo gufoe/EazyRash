@@ -32,6 +32,12 @@
 				</div>
 				<ul class="list-group selected">
 					<li class="list-group-item" ng-repeat="a in articles">
+
+						<a ng-if="a.auth.download" class="btn btn-success btn-striped pull-right"
+							ng-href="/articles/{{a.id}}/download" target="_blank">
+							Download
+						</a>
+						
 			            <i class="fa fa-fw fa-circle status-{{a.status}}" title="{{a.status_txt}}"></i>
 			            <a ng-href="#/articles/{{ a.id }}">
 			                <strong>{{ a.name }}</strong>
