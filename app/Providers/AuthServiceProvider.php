@@ -55,6 +55,10 @@ class AuthServiceProvider extends ServiceProvider
                 && $article->status == \App\Article::UPDATING;
         });
 
+        Gate::define('download-article', function (User $user, \App\Article $article) {
+            return in_array($article->status, [\App\Article::ACCEPTED, \App\Article::REJECTED]);
+        });
+
         Gate::define('manage-conference', function (User $user, \App\Conference $conference) {
             return $conference->chairs()->whereId($user->id)->exists();
         });

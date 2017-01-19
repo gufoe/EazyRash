@@ -40,6 +40,10 @@
 								ng-click="selectReviewers(a)">
 								Reviewers
 							</button>
+							<a ng-if="a.auth.download" class="btn btn-success btn-striped pull-right"
+								ng-href="/articles/{{a.id}}/download">
+								Download
+							</a>
 							<b>
 					            <i class="fa fa-fw fa-circle status-{{a.status}}" title="{{a.status_txt}}"></i>
 								<a ng-href="#/articles/{{ a.id }}">{{ a.name }}</a>

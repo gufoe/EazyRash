@@ -42,6 +42,8 @@ $app->group(['middleware' => 'ajax'], function () use ($app) {
     $app->post('commits/{id}/review', 'CommitController@review');
 });
 
+$app->get('articles/{id}/download', 'ArticleController@download');
+
 // Any other requests is sent to the frontend
 $app->get('{path:.*}', function ($path) use ($app) {
     if (!$path) $path = 'app.html';

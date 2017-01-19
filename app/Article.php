@@ -91,6 +91,7 @@ class Article extends Model
             'review' => Gate::allows('review-article', $this),
             'update' => Gate::allows('update-article', $this),
             'manage' => Gate::allows('manage-article', $this),
+            'download' => Gate::allows('download-article', $this),
         ];
     }
 
