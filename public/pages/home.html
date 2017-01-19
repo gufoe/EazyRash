@@ -1,9 +1,8 @@
 <div class="container bs-docs-container">
-	<pre>Self: {{ self | json }}</pre>
 
 
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-5">
 			<div ng-if="!articles.length" class="callout callout-info">
 				<strong>There are no conferences yet</strong>
 			</div>
@@ -14,14 +13,16 @@
 				<ul class="list-group selected">
 					<li class="list-group-item" ng-repeat="c in conferences">
 						<a ng-href="#/conferences/{{ c.id }}">
-							<strong>{{ c.name }}</strong><br>
+							<strong>{{ c.name }}</strong>
 						</a>
+			            <code ng-if="c.auth.manage">[chair]</code>
+						<br>
 						- <i>{{ c.articles.length }} articles</i>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="col-sm-5">
+		<div class="col-sm-7">
 			<div ng-if="!articles.length" class="callout callout-info">
 				<strong>You have no articles to review</strong>
 			</div>
@@ -35,6 +36,7 @@
 			            <a ng-href="#/articles/{{ a.id }}">
 			                <strong>{{ a.name }}</strong>
 			            </a>
+			            <code ng-if="a.auth.review">[reviewer]</code>
 			            <br>
 			            - <i>{{ a.user.full_name }}</i>
 

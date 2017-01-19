@@ -9,6 +9,7 @@
             <a ng-href="#/articles/{{ a.id }}">
                 <strong>{{ a.name }}</strong>
             </a>
+            <code ng-if="a.auth.review">[reviewer]</code>
             <br>
             - <i>{{ a.user.full_name }}</i>
 

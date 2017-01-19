@@ -8,6 +8,7 @@
             <a ng-href="#/conferences/{{ a.id }}">
                 <strong>{{ a.name }}</strong>
             </a>
+            <code ng-if="a.auth.manage">[chair]</code>
             <br>
             - <i>{{ a.articles.length }} articles</i>
 

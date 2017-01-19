@@ -20,6 +20,7 @@
                             <a ng-href="#/conferences/{{c.id}}">
                                 {{ c.name }}
                             </a>
+                            <code ng-if="c.auth.manage">[chair]</code>
                         </td>
                     </tr>
                 </tbody>

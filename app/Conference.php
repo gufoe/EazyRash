@@ -31,7 +31,5 @@ class Conference extends Model
         return [
             'manage' => Gate::allows('manage-conference', $this),
         ];
-        return user()
-            && $this->chairs()->whereId(user()->id)->exists();
     }
 }
